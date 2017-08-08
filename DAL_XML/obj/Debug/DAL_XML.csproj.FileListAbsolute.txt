@@ -1,0 +1,6 @@
+D:\work\try\StudentsSol\DAL_XML\bin\Debug\DAL_XML.dll
+D:\work\try\StudentsSol\DAL_XML\bin\Debug\DAL_XML.pdb
+D:\work\try\StudentsSol\DAL_XML\obj\Debug\DAL_XML.dll
+D:\work\try\StudentsSol\DAL_XML\obj\Debug\DAL_XML.pdb
+D:\work\try\StudentsSol\DAL_XML\obj\Debug\DAL_XML.csprojResolveAssemblyReference.cache
+D:\work\try\StudentsSol\DAL_XML\bin\Debug\Students.xml

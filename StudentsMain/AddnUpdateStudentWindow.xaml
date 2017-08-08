@@ -1,0 +1,96 @@
+﻿<Window x:Class="StudentsMain.AddnUpdateStudentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentsMain"
+        xmlns:localrules="clr-namespace:StudentsMain.ValidationRules"
+        mc:Ignorable="d"
+        Title="AddnUpdateStudentWindow" Height="300" Width="300" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="TbErrorTemplateStyle" TargetType="TextBox">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <Border BorderBrush="Red" BorderThickness="3">
+                                <AdornedElementPlaceholder></AdornedElementPlaceholder>
+                            </Border>
+                            <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"></TextBlock>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="LabelID" Grid.ColumnSpan="2" HorizontalAlignment="Center" > ID </Label>
+        <Label Grid.Row="1">First name</Label>
+        <Label Grid.Row="2">Last name</Label>
+        <Label Grid.Row="3">Age</Label>
+        <Label Grid.Row="4">Gender</Label>
+        <TextBox x:Name="tbFirstName" Grid.Column="1" Grid.Row="1" Height="20" Style="{StaticResource TbErrorTemplateStyle}">
+            <TextBox.Text>
+                <Binding Path="FirstName" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <localrules:NameRule ValidatesOnTargetUpdated="True"/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox x:Name="tbLastName" Grid.Column="1" Grid.Row="2" Height="20" Style="{StaticResource TbErrorTemplateStyle}">
+            <TextBox.Text>
+                <Binding Path="LastName" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <localrules:NameRule  ValidatesOnTargetUpdated="True"/>
+                        </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox x:Name="tbAge" Grid.Column="1" Grid.Row="3" Height="20" Style="{StaticResource TbErrorTemplateStyle}">
+            <TextBox.Text>
+                <Binding Path="Age" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <localrules:AgeRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="4">
+            <RadioButton Margin="5,0" IsChecked="{Binding Gender, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay }">Female</RadioButton>
+            <RadioButton Margin="5,0" IsChecked="{Binding GenderM}" >Male</RadioButton>
+        </WrapPanel>
+        <WrapPanel Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Width="70" Margin="10,0" Click="ButtonOK_Click" Content="OK">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=tbFirstName, Path=(Validation.HasError)}" Value="true">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=tbLastName, Path=(Validation.HasError)}" Value="true">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=tbAge, Path=(Validation.HasError)}" Value="true">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Width="70" Margin="10,0" Click="ButtonCancel_Click">Cancel</Button>
+        </WrapPanel>
+    </Grid>
+</Window>

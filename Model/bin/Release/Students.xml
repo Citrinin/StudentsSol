@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Students>
+  <Student Id="0">
+    <FirstName>cv</FirstName>
+    <Last>cv</Last>
+    <Age>16</Age>
+    <Gender>1</Gender>
+  </Student>
+  <Student Id="1">
+    <FirstName>Пенек</FirstName>
+    <Last>Теремок</Last>
+    <Age>16</Age>
+    <Gender>0</Gender>
+  </Student>
+</Students>
