@@ -5,7 +5,7 @@ using System.Windows;
 
 namespace DAL_XML
 {
-    public class LinqToXmlObjectModel
+    public static class LinqToXmlObjectModel
     {
 
         public static XDocument GetXmlStudents()

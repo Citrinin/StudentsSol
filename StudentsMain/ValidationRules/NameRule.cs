@@ -12,20 +12,8 @@ namespace StudentsMain.ValidationRules
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-
-            if (value!=null)
-            {
-                string s = value.ToString();
-                if (s == "")
-                {
-                    return new ValidationResult(false, "enter at least 1 char");
-                } 
-            }
-            else
-            {
-                return new ValidationResult(false, "enter at least 1 char");
-            }
-            return new ValidationResult(true, null);
+            var passValidation = value != null && value.ToString() != "";
+            return new ValidationResult(passValidation, passValidation ? null : "enter at least 1 char");
         }
     }
 }
